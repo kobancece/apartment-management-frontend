@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>User List</h2>
+    <ul class="list-group">
+      <li *ngFor="let user of users" class="list-group-item user-item">
+        <a (click)="viewUserDetails(user.id)">{{ user.email }}</a>
+      </li>
+    </ul>
+  
+    <app-back-button></app-back-button> <!-- Back button at the bottom -->
+  </div>
+  

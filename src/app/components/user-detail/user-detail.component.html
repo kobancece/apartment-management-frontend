@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="user-detail">
+      <h2>User Details</h2>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Surname:</strong> {{ user.surname }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p>
+      <p><strong>Role Type:</strong> {{ user.roleType }}</p>
+      <button (click)="showUpdateFormToggle()" class="btn btn-primary">Update</button>
+      <button (click)="deleteUser()" class="btn btn-danger mt-3">Delete User</button>
+    </div>
+  
+    <!-- Update Form Section -->
+    <div *ngIf="showUpdateForm">
+      <h2>Update User</h2>
+      <form (ngSubmit)="updateUser()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="userEdit.name" name="name" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" [(ngModel)]="userEdit.surname" name="surname" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="userEdit.email" name="email" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="text" id="phoneNumber" [(ngModel)]="userEdit.phoneNumber" name="phoneNumber" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" [(ngModel)]="userEdit.password" name="password" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="roleType">Role Type:</label>
+          <input type="text" id="roleType" [(ngModel)]="userEdit.roleType" name="roleType" required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Update User</button>
+      </form>
+    </div>
+  
+    <app-back-button></app-back-button> <!-- Back button at the bottom -->
+  </div>
+  

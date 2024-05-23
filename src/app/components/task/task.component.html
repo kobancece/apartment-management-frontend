@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Add Task</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" [(ngModel)]="task.taskName" name="taskName" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="userID">User ID:</label>
+        <input type="number" id="userID" [(ngModel)]="task.userID" name="userID" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="taskDescription">Task Description:</label>
+        <input type="text" id="taskDescription" [(ngModel)]="task.taskDescription" name="taskDescription" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="assignedName">Assigned Name:</label>
+        <input type="text" id="assignedName" [(ngModel)]="task.assignedName" name="assignedName" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+    <app-back-button></app-back-button>
+  </div>
+  

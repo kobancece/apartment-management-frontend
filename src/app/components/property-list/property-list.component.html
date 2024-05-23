@@ -1,0 +1,12 @@
+<div class="container">
+    <h2>Property List</h2>
+    <button (click)="navigateToAddProperty()" class="btn btn-success mb-3">Add Property</button>
+    <ul class="list-group">
+      <li *ngFor="let property of properties" class="list-group-item property-item">
+        <a (click)="viewPropertyDetails(property.propertyID)">{{ property.propertyName }}</a>
+      </li>
+    </ul>
+  
+    <app-back-button></app-back-button> <!-- Back button at the bottom -->
+  </div>
+  

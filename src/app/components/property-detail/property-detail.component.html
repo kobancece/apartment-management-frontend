@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="property-detail">
+      <h2>Property Details</h2>
+      <p><strong>Property Name:</strong> {{ property.propertyName }}</p>
+      <p><strong>Description:</strong> {{ property.description }}</p>
+      <p><strong>Flat Number:</strong> {{ property.flatNumber }}</p>
+      <p><strong>Size:</strong> {{ property.size }}</p>
+      <p><strong>Number of Rooms:</strong> {{ property.numberOfRooms }}</p>
+      <p><strong>Number of Bathrooms:</strong> {{ property.numberOfBathrooms }}</p>
+      <p><strong>Rent:</strong> {{ property.rent }}</p>
+      <p><strong>Rental Status:</strong> {{ property.rentalStatus }}</p>
+      <p><strong>Number of Balconies:</strong> {{ property.numberOfBalconies }}</p>
+      <p><strong>Internet Status:</strong> {{ property.internetStatus }}</p>
+      <p><strong>Infrastructure:</strong> {{ property.infrastructure }}</p>
+      <button (click)="showUpdateFormToggle()" class="btn btn-primary">Update</button>
+      <button (click)="deleteProperty()" class="btn btn-danger mt-3">Delete Property</button>
+    </div>
+  
+    <!-- Update Form Section -->
+    <div *ngIf="showUpdateForm">
+      <h2>Update Property</h2>
+      <form (ngSubmit)="updateProperty()">
+        <div class="form-group">
+          <label for="propertyName">Property Name:</label>
+          <input type="text" id="propertyName" [(ngModel)]="propertyEdit.propertyName" name="propertyName" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" id="description" [(ngModel)]="propertyEdit.description" name="description" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="flatNumber">Flat Number:</label>
+          <input type="number" id="flatNumber" [(ngModel)]="propertyEdit.flatNumber" name="flatNumber" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="size">Size:</label>
+          <input type="number" id="size" [(ngModel)]="propertyEdit.size" name="size" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="numberOfRooms">Number of Rooms:</label>
+          <input type="number" id="numberOfRooms" [(ngModel)]="propertyEdit.numberOfRooms" name="numberOfRooms" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="numberOfBathrooms">Number of Bathrooms:</label>
+          <input type="number" id="numberOfBathrooms" [(ngModel)]="propertyEdit.numberOfBathrooms" name="numberOfBathrooms" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="rent">Rent:</label>
+          <input type="number" id="rent" [(ngModel)]="propertyEdit.rent" name="rent" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="rentalStatus">Rental Status:</label>
+          <input type="text" id="rentalStatus" [(ngModel)]="propertyEdit.rentalStatus" name="rentalStatus" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="numberOfBalconies">Number of Balconies:</label>
+          <input type="number" id="numberOfBalconies" [(ngModel)]="propertyEdit.numberOfBalconies" name="numberOfBalconies" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="internetStatus">Internet Status:</label>
+          <input type="text" id="internetStatus" [(ngModel)]="propertyEdit.internetStatus" name="internetStatus" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="infrastructure">Infrastructure:</label>
+          <input type="text" id="infrastructure" [(ngModel)]="propertyEdit.infrastructure" name="infrastructure" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Property</button>
+      </form>
+    </div>
+  
+    <app-back-button></app-back-button> <!-- Back button at the bottom -->
+  </div>
+  
