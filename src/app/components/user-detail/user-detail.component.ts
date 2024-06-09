@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 })
 export class UserDetailComponent implements OnInit {
   user: any = {};
-  userEdit: any = {}; // Copy of the user for editing
+  userEdit: any = {};
   showUpdateForm = false;
 
   constructor(
@@ -25,11 +25,11 @@ export class UserDetailComponent implements OnInit {
   getUserDetails() {
     const userId = this.route.snapshot.paramMap.get('id');
     if (userId) {
-      const parsedUserId = Number(userId);  // Parse userId to number
+      const parsedUserId = Number(userId);
       this.userService.getUserById(parsedUserId).subscribe({
         next: (user) => {
           this.user = user;
-          this.userEdit = { ...user }; // Make a copy of the user for editing
+          this.userEdit = { ...user };
           console.log('User details fetched successfully', user);
         },
         error: (error) => {
@@ -42,7 +42,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   showUpdateFormToggle() {
-    this.showUpdateForm = true; // Show the update form when the button is clicked
+    this.showUpdateForm = true;
   }
 
   updateUser() {
@@ -50,8 +50,8 @@ export class UserDetailComponent implements OnInit {
       this.userService.updateUser(this.userEdit.id, this.userEdit).subscribe({
         next: (response) => {
           console.log('User updated successfully', response);
-          this.user = { ...this.userEdit }; // Update the displayed user details
-          this.showUpdateForm = false; // Hide the update form
+          this.user = { ...this.userEdit };
+          this.showUpdateForm = false;
           this.router.navigate(['/dashboard/user']);
         },
         error: (error) => {

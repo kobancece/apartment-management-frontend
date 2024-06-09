@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PropertyService {
-  private apiUrl = 'http://localhost:8080/apartment/property';
+  private apiUrl = 'http://localhost:8082/apartment/property';
 
   constructor(private http: HttpClient) { }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../services/task.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -9,17 +10,20 @@ import { TaskService } from '../../services/task.service';
 })
 export class TaskDetailComponent implements OnInit {
   task: any = {};
-  taskEdit: any = {}; // Copy of the task for editing
-  showUpdateForm = false;
+  technicians: any[] = [];
+  assignedUserName: string = '';
+  showUpdateForm: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.getTaskDetails();
+    this.getTechnicians();
   }
 
   getTaskDetails() {
@@ -28,8 +32,7 @@ export class TaskDetailComponent implements OnInit {
       this.taskService.getTaskById(taskId).subscribe({
         next: (task) => {
           this.task = task;
-          this.taskEdit = { ...task }; // Make a copy of the task for editing
-          console.log('Task details fetched successfully', task);
+          this.getAssignedUserName(task.userID);
         },
         error: (error) => {
           console.error('Error fetching task details', error);
@@ -40,18 +43,40 @@ export class TaskDetailComponent implements OnInit {
     }
   }
 
+  getTechnicians() {
+    this.userService.getUsersByRole('technician').subscribe({
+      next: (technicians) => {
+        this.technicians = technicians;
+      },
+      error: (error) => {
+        console.error('Error fetching technicians', error);
+      }
+    });
+  }
+
+  getAssignedUserName(userId: number) {
+    this.userService.getUserById(userId).subscribe({
+      next: (user) => {
+        this.assignedUserName = `${user.name} ${user.surname}`;
+      },
+      error: (error) => {
+        console.error('Error fetching assigned user', error);
+      }
+    });
+  }
+
+
   showUpdateFormToggle() {
-    this.showUpdateForm = true; // Show the update form when the button is clicked
+    this.showUpdateForm = !this.showUpdateForm;
   }
 
   updateTask() {
-    if (this.taskEdit.taskID) {
-      this.taskService.updateTask(this.taskEdit.taskID, this.taskEdit).subscribe({
+    const taskId = this.route.snapshot.paramMap.get('id');
+    if (taskId) {
+      this.taskService.updateTask(taskId, this.task).subscribe({
         next: (response) => {
           console.log('Task updated successfully', response);
-          this.task = { ...this.taskEdit }; // Update the displayed task details
-          this.showUpdateForm = false; // Hide the update form
-          this.router.navigate(['/dashboard/task/all']);
+          this.router.navigate(['/dashboard/task']);
         },
         error: (error) => {
           console.error('Error updating task', error);
@@ -63,11 +88,12 @@ export class TaskDetailComponent implements OnInit {
   }
 
   deleteTask() {
-    if (this.task.taskID) {
-      this.taskService.deleteTask(this.task.taskID).subscribe({
+    const taskId = this.route.snapshot.paramMap.get('id');
+    if (taskId) {
+      this.taskService.deleteTask(taskId).subscribe({
         next: (response) => {
           console.log('Task deleted successfully', response);
-          this.router.navigate(['/dashboard/task/all']);
+          this.router.navigate(['/dashboard/task']);
         },
         error: (error) => {
           console.error('Error deleting task', error);

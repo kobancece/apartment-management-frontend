@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/apartment/user';
+  private apiUrl = 'http://localhost:8082/apartment/user';
 
   constructor(private http: HttpClient) { }
 
@@ -32,5 +32,9 @@ export class UserService {
 
   loginUser(loginData: { email: string, password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, loginData);
+  }
+
+  getUsersByRole(role: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/role/${role}`);
   }
 }

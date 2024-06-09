@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -13,30 +14,27 @@ export class AddUserComponent {
     email: '',
     phoneNumber: '',
     password: '',
-    flatList: [] as string[],
     roleType: ''
   };
 
-  flatListInput = '';
-  users: any[] = [];
+  successMessage: string | null = null;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
-  onSubmit() {
-    this.user.flatList = this.flatListInput.split(',').map(flat => flat.trim());
-    this.userService.createUser(this.user).subscribe(response => {
-      console.log('User created successfully', response);
-    }, error => {
-      console.error('Error creating user', error);
-    });
-  }
-
-  fetchAllUsers() {
-    this.userService.getAllUsers().subscribe(users => {
-      this.users = users;
-      console.log('Users fetched successfully', users);
-    }, error => {
-      console.error('Error fetching users', error);
+  addUser() {
+    this.userService.createUser(this.user).subscribe({
+      next: (response) => {
+        this.successMessage = 'User added successfully!';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
+      },
+      error: (error) => {
+        console.error('Error creating user', error);
+      }
     });
   }
 }
