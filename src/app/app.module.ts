@@ -21,6 +21,8 @@ import { PropertyListComponent } from './components/property-list/property-list.
 import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
 import { PropertyAddComponent } from './components/property-add/property-add.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
+import { StatisticComponent } from './components/statistic/statistic.component';
+import { QueryComponent } from './components/query/query.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { BackButtonComponent } from './components/back-button/back-button.compon
     PropertyListComponent,
     PropertyDetailComponent,
     PropertyAddComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    StatisticComponent,
+    StatisticComponent,
+    QueryComponent,
   ],
   imports: [
     BrowserModule,

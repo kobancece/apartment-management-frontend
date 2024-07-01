@@ -1,0 +1,53 @@
+<div class="statistics-section">
+    <h2>Statistics</h2>
+    <select (change)="fetchMetric($event)">
+      <option value="">Select Statistic</option>
+      <option value="performance">Performance Metrics</option>
+      <option value="logging">Logging</option>
+      <option value="error">Error Handling</option>
+    </select>
+  
+    <table *ngIf="selectedMetric === 'performance'">
+      <thead>
+        <tr>
+          <th>Performance Metric</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metric of performanceMetrics">
+          <td>{{ metric.key }}</td>
+          <td>{{ metric.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <table *ngIf="selectedMetric === 'logging'">
+      <thead>
+        <tr>
+          <th>Log Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of loggingMetrics">
+          <td>{{ log }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <table *ngIf="selectedMetric === 'error'">
+      <thead>
+        <tr>
+          <th>Error Metric</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metric of errorMetrics">
+          <td>{{ metric.key }}</td>
+          <td>{{ metric.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

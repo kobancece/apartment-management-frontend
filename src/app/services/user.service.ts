@@ -37,4 +37,8 @@ export class UserService {
   getUsersByRole(role: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/role/${role}`);
   }
+
+  addPropertyToUser(userId: number, propertyId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${userId}/add-property`, { propertyId });
+  }
 }

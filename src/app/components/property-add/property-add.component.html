@@ -1,53 +1,103 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Property</title>
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "ApartmentComplex",
+      "name": "Sample Property",
+      "description": "A sample property for rent",
+      "numberOfRooms": 3,
+      "numberOfBathrooms": 2,
+      "floorSize": {
+        "@type": "QuantitativeValue",
+        "value": 100,
+        "unitCode": "M2"
+      },
+      "lease": {
+        "@type": "Lease",
+        "leaseTerm": {
+          "@type": "Duration",
+          "name": "1 year"
+        },
+        "amount": 1200,
+        "currency": "USD"
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Internet",
+          "value": "Available"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Balcony",
+          "value": 1
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Infrastructure",
+          "value": "Good"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+<div class="container" typeof="schema:ApartmentComplex">
     <h2>Add Property</h2>
     <form (ngSubmit)="addProperty()">
       <div class="form-group">
         <label for="propertyName">Property Name:</label>
-        <input type="text" id="propertyName" [(ngModel)]="property.propertyName" name="propertyName" required class="form-control">
+        <input type="text" id="propertyName" [(ngModel)]="property.propertyName" name="propertyName" required class="form-control" property="schema:name">
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
-        <input type="text" id="description" [(ngModel)]="property.description" name="description" required class="form-control">
+        <input type="text" id="description" [(ngModel)]="property.description" name="description" required class="form-control" property="schema:description">
       </div>
       <div class="form-group">
         <label for="flatNumber">Flat Number:</label>
-        <input type="number" id="flatNumber" [(ngModel)]="property.flatNumber" name="flatNumber" required class="form-control">
+        <input type="number" id="flatNumber" [(ngModel)]="property.flatNumber" name="flatNumber" required class="form-control" property="schema:identifier">
       </div>
       <div class="form-group">
         <label for="size">Size:</label>
-        <input type="number" id="size" [(ngModel)]="property.size" name="size" required class="form-control">
+        <input type="number" id="size" [(ngModel)]="property.size" name="size" required class="form-control" property="schema:floorSize">
       </div>
       <div class="form-group">
         <label for="numberOfRooms">Number of Rooms:</label>
-        <input type="number" id="numberOfRooms" [(ngModel)]="property.numberOfRooms" name="numberOfRooms" class="form-control">
+        <input type="number" id="numberOfRooms" [(ngModel)]="property.numberOfRooms" name="numberOfRooms" class="form-control" property="schema:numberOfRooms">
       </div>
       <div class="form-group">
         <label for="numberOfBathrooms">Number of Bathrooms:</label>
-        <input type="number" id="numberOfBathrooms" [(ngModel)]="property.numberOfBathrooms" name="numberOfBathrooms" class="form-control">
+        <input type="number" id="numberOfBathrooms" [(ngModel)]="property.numberOfBathrooms" name="numberOfBathrooms" class="form-control" property="schema:numberOfBathrooms">
       </div>
       <div class="form-group">
         <label for="rent">Rent:</label>
-        <input type="number" id="rent" [(ngModel)]="property.rent" name="rent" class="form-control">
+        <input type="number" id="rent" [(ngModel)]="property.rent" name="rent" class="form-control" property="schema:lease">
       </div>
       <div class="form-group">
         <label for="rentalStatus">Rental Status:</label>
-        <input type="text" id="rentalStatus" [(ngModel)]="property.rentalStatus" name="rentalStatus" class="form-control">
+        <input type="text" id="rentalStatus" [(ngModel)]="property.rentalStatus" name="rentalStatus" class="form-control" property="schema:availability">
       </div>
       <div class="form-group">
         <label for="numberOfBalconies">Number of Balconies:</label>
-        <input type="number" id="numberOfBalconies" [(ngModel)]="property.numberOfBalconies" name="numberOfBalconies" class="form-control">
+        <input type="number" id="numberOfBalconies" [(ngModel)]="property.numberOfBalconies" name="numberOfBalconies" class="form-control" property="schema:amenityFeature">
       </div>
       <div class="form-group">
         <label for="internetStatus">Internet Status:</label>
-        <input type="text" id="internetStatus" [(ngModel)]="property.internetStatus" name="internetStatus" class="form-control">
+        <input type="text" id="internetStatus" [(ngModel)]="property.internetStatus" name="internetStatus" class="form-control" property="schema:amenityFeature">
       </div>
       <div class="form-group">
         <label for="infrastructure">Infrastructure:</label>
-        <input type="text" id="infrastructure" [(ngModel)]="property.infrastructure" name="infrastructure" class="form-control">
+        <input type="text" id="infrastructure" [(ngModel)]="property.infrastructure" name="infrastructure" class="form-control" property="schema:amenityFeature">
       </div>
       <button type="submit" class="btn btn-primary">Add Property</button>
     </form>
   
     <app-back-button></app-back-button> <!-- Back button at the bottom -->
   </div>
-  
+</body>
+</html>

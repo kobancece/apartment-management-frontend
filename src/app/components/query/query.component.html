@@ -1,0 +1,26 @@
+<div class="query-section">
+    <h2>SPARQL Query</h2>
+    <textarea [(ngModel)]="query" placeholder="Enter your SPARQL query here"></textarea>
+    <button (click)="runQuery()">Run</button>
+  
+    <div *ngIf="noResultsFound">
+      <p>No results found</p>
+    </div>
+  
+    <div *ngIf="results.length > 0">
+      <h3>Results:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let key of resultKeys">{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of results">
+            <td *ngFor="let key of resultKeys">{{ result[key] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

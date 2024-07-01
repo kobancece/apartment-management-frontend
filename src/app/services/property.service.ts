@@ -11,7 +11,7 @@ export class PropertyService {
   constructor(private http: HttpClient) { }
 
   addProperty(property: any): Observable<any> {
-    return this.http.post(this.apiUrl, property);
+    return this.http.post(`${this.apiUrl}`, property);
   }
 
   getAllProperties(): Observable<any[]> {
@@ -28,5 +28,9 @@ export class PropertyService {
 
   deleteProperty(propertyId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${propertyId}/delete`);
+  }
+
+  addPropertyToUser(userId: number, propertyId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add-to-user`, { userId, propertyId });
   }
 }

@@ -13,6 +13,8 @@ import { PropertyListComponent } from './components/property-list/property-list.
 import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
 import { PropertyAddComponent } from './components/property-add/property-add.component';
 import { PropertyComponent } from './components/property/property.component';
+import { StatisticComponent } from './components/statistic/statistic.component';
+import { QueryComponent } from './components/query/query.component';
 
 const routes: Routes = [
   { path: 'add-user', component: AddUserComponent },
@@ -27,7 +29,9 @@ const routes: Routes = [
     { path: 'property/add', component: PropertyAddComponent },
     { path: 'property/:id', component: PropertyDetailComponent },
     { path: 'user', component: UserListComponent },
-    { path: 'user/:id', component: UserDetailComponent }
+    { path: 'user/:id', component: UserDetailComponent },
+    { path: 'statistics', component: StatisticComponent },
+    { path: 'query', component: QueryComponent }
   ]},
   { path: '', redirectTo: '/dashboard/task', pathMatch: 'full' }
 ];
